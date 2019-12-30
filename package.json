@@ -1,0 +1,22 @@
+{
+  "name": "japan-mod-joint-staff-press-crawler",
+  "version": "0.0.1",
+  "description": "Crawler for Japanese Ministry of Defense's Joint Staff Page",
+  "main": "dist/",
+  "repository": "https://github.com/Alex4386/japan-mod-joint-staff-press-crawler",
+  "author": "Alex4386 <psh010209@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "jsdom": "^15.2.1",
+    "request": "^2.88.0",
+    "typescript": "^3.7.4"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^12.2.4",
+    "@types/node": "^13.1.1",
+    "@types/request": "^2.48.4"
+  },
+  "scripts": {
+    "start": "tsc && node dist/"
+  }
+}
