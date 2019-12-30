@@ -99,6 +99,8 @@ function getReportViaIndex(index: string) {
                * 
                * Aw shit, Here we go again. DOM magic time.
                */
+
+              // JSDOM doesn't work with innerText, very... well..
               const rawTitle = stripTags(liTag.innerHTML);
               const dateParsed = /\d{2}\/\d{2}/.exec(rawTitle);
               if (dateParsed === null) {
@@ -106,7 +108,8 @@ function getReportViaIndex(index: string) {
               }
               const newsDate = dateParsed[0];
               const newsOfficial = /［公表］/g.test(rawTitle);
-  
+              
+              // I don't know the string for unofficial. duh.
               const newsTitle = rawTitle.replace(newsDate, "").replace(
                 (newsOfficial ? "［公表］" : ""), ""
               );
