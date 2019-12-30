@@ -1,6 +1,7 @@
 import request from "request";
 import config from "./config";
 import { JSDOM } from "jsdom";
+import fs from "fs";
 
 interface NewsElement {
   uuid: string;
@@ -103,7 +104,7 @@ function getReportViaIndex(index: string) {
               if (dateParsed === null) {
                 continue;
               }
-              const newsDate = dateParsed[1];
+              const newsDate = dateParsed[0];
               const newsOfficial = /［公表］/g.test(rawTitle);
   
               const newsTitle = rawTitle.replace(newsDate, "").replace(
@@ -149,17 +150,19 @@ function getReportViaIndex(index: string) {
   )
 }
 
+let total = {};
 getReportIndeces(2019).then(
   indeces => {
     for (const index of indeces) {
       getReportViaIndex(index).then(
         reports => {
-          console.log(reports);
+          reports.sort((a,b) => parseInt(a.uuid.replace(/\D+/g, '')) - parseInt(b.uuid.replace(/\D+/g, '')));
+          total = { ...total, [index]: reports };
+          fs.writeFileSync("report.json", JSON.stringify(total), {encoding: "utf-8"})
         }
       ).catch(e => {})
     }
-    
-  }
 
+  }
 );
 
