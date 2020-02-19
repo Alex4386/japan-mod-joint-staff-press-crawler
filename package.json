@@ -9,6 +9,7 @@
   "dependencies": {
     "jsdom": "^15.2.1",
     "request": "^2.88.0",
+    "telegraf": "^3.36.0",
     "typescript": "^3.7.4"
   },
   "devDependencies": {
